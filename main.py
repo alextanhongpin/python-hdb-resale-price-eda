@@ -16,7 +16,8 @@ def _():
 @app.cell
 def _(pl):
     df = pl.read_csv(
-        "data/Resale flat prices based on registration date from Jan-2017 onwards.csv",
+        'https://raw.githubusercontent.com/alextanhongpin/python-hdb-resale-price-eda/refs/heads/master/data/Resale%20flat%20prices%20based%20on%20registration%20date%20from%20Jan-2017%20onwards.csv',
+       # "data/Resale flat prices based on registration date from Jan-2017 onwards.csv",
         infer_schema_length=10000,
     )
     return (df,)
