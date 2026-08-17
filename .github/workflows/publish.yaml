@@ -22,11 +22,16 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v3
+
       - name: Export notebook
-        run: marimo export html-wasm main.py -o dist --mode run
- 
+        run: uvx marimo export html-wasm main.py -o dist --mode run
+
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -38,11 +43,11 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
- 
+
     permissions:
       pages: write
       id-token: write
- 
+
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
